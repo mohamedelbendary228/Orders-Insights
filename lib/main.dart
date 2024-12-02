@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:orders_insights/app/core/values/app_theme.dart';
+import 'package:orders_insights/app/routes/app_pages.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations(
+    [
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ],
+  ).then((_) {
+    runApp(const MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -10,15 +23,27 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Orders Insights',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: Scaffold(body: SizedBox.shrink()),
+    return ScreenUtilInit(
+      useInheritedMediaQuery: true,
+      designSize: const Size(430, 932),
+      builder: (context, widget) {
+        return GetMaterialApp(
+          title: 'Orders Insights',
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.appTheme,
+          initialRoute: AppPages.kINITIAL,
+          getPages: AppPages.routes,
+          locale: const Locale('en'),
+          builder: (context, widget) {
+            return MediaQuery(
+              data: MediaQuery.of(context).copyWith(
+                textScaler: const TextScaler.linear(1.6),
+              ),
+              child: widget!,
+            );
+          },
+        );
+      },
     );
   }
 }
-
-
