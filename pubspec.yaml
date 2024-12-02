@@ -18,6 +18,8 @@ dependencies:
   get: ^4.6.6
   flutter_svg: ^2.0.16
   flutter_screenutil: ^5.9.3
+  persistent_bottom_nav_bar: ^6.2.1
+  fluttertoast: ^8.2.6
 
 dev_dependencies:
   flutter_test:
@@ -39,6 +41,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/svg/
+    - assets/orders.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

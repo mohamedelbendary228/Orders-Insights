@@ -3,10 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:orders_insights/app/core/values/app_theme.dart';
+import 'package:orders_insights/app/data/providers/fetch_orders_list.dart';
 import 'package:orders_insights/app/routes/app_pages.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  initServices();
   await SystemChrome.setPreferredOrientations(
     [
       DeviceOrientation.portraitUp,
@@ -15,6 +17,10 @@ void main() async {
   ).then((_) {
     runApp(const MyApp());
   });
+}
+
+void initServices() {
+  Get.put(OrdersListProvider());
 }
 
 class MyApp extends StatelessWidget {
