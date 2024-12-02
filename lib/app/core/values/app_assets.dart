@@ -7,4 +7,10 @@ class AppAssets {
 
   /// .SVG --------------------------------------------------------
   static const String splashLogo = "${_kSvgImages}flapkap_logo.svg";
+  static const String appIcon = "${_kSvgImages}app_icon.svg";
+  static const String cartIco = "${_kSvgImages}cart_icon.svg";
+  static const String chartIcon = "${_kSvgImages}chart.svg";
+
+  /// .PNG --------------------------------------------------------
+  static const String appBarHeader = "${_kImages}header.png";
 }

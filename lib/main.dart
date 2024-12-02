@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:orders_insights/app/core/values/app_theme.dart';
-import 'package:orders_insights/app/data/providers/fetch_orders_list.dart';
+import 'package:orders_insights/app/data/providers/orders__recap_provider.dart';
 import 'package:orders_insights/app/routes/app_pages.dart';
 
 void main() async {
@@ -20,7 +20,7 @@ void main() async {
 }
 
 void initServices() {
-  Get.put(OrdersListProvider());
+  Get.put(OrdersRecapProvider());
 }
 
 class MyApp extends StatelessWidget {
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
           builder: (context, widget) {
             return MediaQuery(
               data: MediaQuery.of(context).copyWith(
-                textScaler: const TextScaler.linear(1.6),
+                textScaler: const TextScaler.linear(1.5),
               ),
               child: widget!,
             );

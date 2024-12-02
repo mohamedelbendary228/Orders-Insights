@@ -12,16 +12,7 @@ class SplashView extends GetView<SplashController> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Container(
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: Colors.black45,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: SvgPicture.asset(
-            AppAssets.splashLogo,
-          ),
-        ),
+        child: SvgPicture.asset(AppAssets.appIcon),
       ),
     );
   }

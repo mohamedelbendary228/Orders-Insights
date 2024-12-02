@@ -1,34 +1,64 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:orders_insights/app/core/widgets/toast.dart';
-import 'package:orders_insights/app/data/models/orders_model.dart';
-import 'package:orders_insights/app/data/providers/fetch_orders_list.dart';
+import 'package:orders_insights/app/core/values/app_assets.dart';
+import 'package:orders_insights/app/core/values/app_colors.dart';
+import 'package:orders_insights/app/modules/orders_recap/controllers/orders_recap_controller.dart';
+import 'package:orders_insights/app/modules/orders_recap/views/orders_recap_view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class BottomNavBarController extends GetxController {
-  late OrdersListProvider ordersListProvider;
+  PersistentTabController? persistentTabController = PersistentTabController();
 
-  Rxn<OrdersModel> ordersModel = Rxn<OrdersModel>();
+  int selectedIndex = 0;
 
-  RxBool loading = false.obs;
+  final List<Widget> screens = [
+    const OrdersRecapView(),
+    Container(),
+  ];
 
   @override
   void onInit() {
     super.onInit();
-    ordersListProvider = Get.find<OrdersListProvider>();
-    fetchOrders();
+    Get.put(OrdersRecapController());
   }
 
-  Future<void> fetchOrders() async {
-    try {
-      loading.value = true;
+  List<PersistentBottomNavBarItem> buildNavBarsItems() {
+    const activeColorPrimary = AppColors.primaryColor;
+    const inactiveColorPrimary = Color(0xFF80A997);
+    const textStyle = TextStyle(
+      fontFamily: "Cairo",
+      fontSize: 14,
+      fontWeight: FontWeight.w500,
+    );
 
-      ordersModel.value = await ordersListProvider.fetOrdersFromJsonFile();
+    return [
+      PersistentBottomNavBarItem(
+        icon: SvgPicture.asset(AppAssets.cartIco),
+        //inactiveIcon: SvgPicture.asset(AppAssets.homeOutlineIcon),
+        title: "Orders",
+        activeColorPrimary: activeColorPrimary,
+        inactiveColorPrimary: inactiveColorPrimary,
+        textStyle: textStyle,
+      ),
+      PersistentBottomNavBarItem(
+        icon: SvgPicture.asset(AppAssets.chartIcon),
+        //inactiveIcon: Image.asset(AppAssets.requestsIconDisabled),
+        title: "Reports",
+        activeColorPrimary: activeColorPrimary,
+        inactiveColorPrimary: inactiveColorPrimary,
+        textStyle: textStyle,
+      ),
+    ];
+  }
 
-      if (ordersModel.value != null && ordersModel.value?.data != null) {
-        loading.value = false;
+  void onItemSelected(int value) {
+    selectedIndex = value;
+    debugPrint("selectedIndex $selectedIndex");
+    if (selectedIndex == 0) {
+      if (!Get.isRegistered<OrdersRecapController>()) {
+        Get.put(OrdersRecapController());
       }
-    } catch (e) {
-      loading.value = false;
-      showToast(message: e.toString());
     }
   }
 }
