@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:orders_insights/app/core/values/app_assets.dart';
 import 'package:orders_insights/app/core/widgets/default_text_widget.dart';
@@ -23,9 +22,6 @@ class CustomAppBar extends StatelessWidget {
         Image.asset(
           AppAssets.appBarHeader,
           width: MediaQuery.sizeOf(context).width,
-          fit: ScreenUtil().deviceType(context) == DeviceType.tablet
-              ? BoxFit.fitWidth
-              : null,
         ),
         Positioned(
           top: 60,

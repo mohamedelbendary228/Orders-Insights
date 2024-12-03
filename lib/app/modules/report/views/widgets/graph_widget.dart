@@ -13,7 +13,7 @@ class GraphWidget extends GetView<ReportController> {
   Widget build(BuildContext context) {
     return SfCartesianChart(
       title: const ChartTitle(
-        text: "This graph Showing the number orders for each month",
+        text: "This graph showing the number of orders for each month",
         textStyle: TextStyle(
           fontFamily: "Cairo",
           fontWeight: FontWeight.w600,

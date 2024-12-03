@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:orders_insights/app/core/values/app_colors.dart';
 import 'package:orders_insights/app/core/widgets/default_text_widget.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -24,7 +23,7 @@ class RecapCard extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.only(bottom: 20),
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        width: Get.width,
+        width: MediaQuery.sizeOf(context).width,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: const BorderRadius.all(
