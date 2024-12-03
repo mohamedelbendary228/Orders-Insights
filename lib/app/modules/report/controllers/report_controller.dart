@@ -84,10 +84,6 @@ class ReportController extends GetxController {
       );
     });
 
-    // Sort the graphData by xDate for proper visualization
     graphData.sort((a, b) => a.xDate.compareTo(b.xDate));
-
-    debugPrint("orderCountsByDate --------- $orderCountsByDate");
-    debugPrint("graphData --------- $graphData");
   }
 }
