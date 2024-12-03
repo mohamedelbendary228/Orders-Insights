@@ -5,6 +5,8 @@ import 'package:orders_insights/app/core/values/app_assets.dart';
 import 'package:orders_insights/app/core/values/app_colors.dart';
 import 'package:orders_insights/app/modules/orders_recap/controllers/orders_recap_controller.dart';
 import 'package:orders_insights/app/modules/orders_recap/views/orders_recap_view.dart';
+import 'package:orders_insights/app/modules/report/controllers/report_controller.dart';
+import 'package:orders_insights/app/modules/report/views/report_view.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class BottomNavBarController extends GetxController {
@@ -14,7 +16,7 @@ class BottomNavBarController extends GetxController {
 
   final List<Widget> screens = [
     const OrdersRecapView(),
-    Container(),
+    const ReportView(),
   ];
 
   @override
@@ -35,7 +37,6 @@ class BottomNavBarController extends GetxController {
     return [
       PersistentBottomNavBarItem(
         icon: SvgPicture.asset(AppAssets.cartIco),
-        //inactiveIcon: SvgPicture.asset(AppAssets.homeOutlineIcon),
         title: "Orders",
         activeColorPrimary: activeColorPrimary,
         inactiveColorPrimary: inactiveColorPrimary,
@@ -43,7 +44,6 @@ class BottomNavBarController extends GetxController {
       ),
       PersistentBottomNavBarItem(
         icon: SvgPicture.asset(AppAssets.chartIcon),
-        //inactiveIcon: Image.asset(AppAssets.requestsIconDisabled),
         title: "Reports",
         activeColorPrimary: activeColorPrimary,
         inactiveColorPrimary: inactiveColorPrimary,
@@ -58,6 +58,10 @@ class BottomNavBarController extends GetxController {
     if (selectedIndex == 0) {
       if (!Get.isRegistered<OrdersRecapController>()) {
         Get.put(OrdersRecapController());
+      }
+    } else if (selectedIndex == 1) {
+      if (!Get.isRegistered<ReportController>()) {
+        Get.put(ReportController());
       }
     }
   }

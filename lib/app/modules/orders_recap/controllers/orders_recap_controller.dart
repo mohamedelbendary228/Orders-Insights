@@ -46,4 +46,8 @@ class OrdersRecapController extends GetxController {
       showToast(message: e.toString());
     }
   }
+
+  void onRefesh() {
+    fetchOrders();
+  }
 }
