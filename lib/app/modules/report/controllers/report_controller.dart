@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:orders_insights/app/core/values/app_colors.dart';
+
 import 'package:orders_insights/app/core/widgets/toast.dart';
 import 'package:orders_insights/app/data/models/orders_graph_model.dart';
 import 'package:orders_insights/app/data/models/orders_model.dart';
@@ -45,20 +45,6 @@ class ReportController extends GetxController {
       animationDuration: 1000,
     );
     fetchGraphData();
-    series = RxList(
-      [
-        LineSeries<OrdersGraphModel, DateTime>(
-          dataSource: graphData,
-          xValueMapper: (OrdersGraphModel ordersData, _) => ordersData.xDate,
-          yValueMapper: (OrdersGraphModel ordersData, _) =>
-              ordersData.yOrdersCount,
-          markerSettings: const MarkerSettings(
-            isVisible: true,
-          ),
-          color: AppColors.primaryColor,
-        ),
-      ],
-    );
   }
 
   Future<void> fetchGraphData() async {
@@ -104,6 +90,4 @@ class ReportController extends GetxController {
     debugPrint("orderCountsByDate --------- $orderCountsByDate");
     debugPrint("graphData --------- $graphData");
   }
-
-  // void switchSeries() {}
 }
